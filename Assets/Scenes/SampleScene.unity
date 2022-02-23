@@ -4398,6 +4398,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tim
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 49bdb111901dac44c9272b508b531936, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 49bdb111901dac44c9272b508b531936, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: edca44a450223e74b96378a8f0d55eaf, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 49bdb111901dac44c9272b508b531936, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49bdb111901dac44c9272b508b531936, type: 3}
 --- !u!1 &495892336
