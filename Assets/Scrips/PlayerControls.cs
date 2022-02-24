@@ -8,6 +8,7 @@ public class PlayerControls : MonoBehaviour
     public bool isMoving;
     public bool isJumping;
     public bool isRunning;
+    public float disapearTime = 1;
 
     [Header("Movements")]
     public float walkSpeed = 5;
@@ -94,7 +95,7 @@ public class PlayerControls : MonoBehaviour
 
         if (other.gameObject.CompareTag("Platform"))
         {
-            Destroy(other.gameObject, 2);
+            Destroy(other.gameObject, disapearTime);
         }
     }
 }
