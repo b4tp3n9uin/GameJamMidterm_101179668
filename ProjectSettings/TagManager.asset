@@ -7,6 +7,7 @@ TagManager:
   - Platform
   - safezone
   - DeathZone
+  - Win
   layers:
   - Default
   - TransparentFX

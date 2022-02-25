@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -27,6 +26,7 @@ public class PlayerControls : MonoBehaviour
     Rigidbody rb;
     Animator anim;
     public GameObject BackCam;
+    public InGameManager inGameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +35,7 @@ public class PlayerControls : MonoBehaviour
         anim = GetComponent<Animator>();
 
         BackCam.SetActive(false);
+        inGameManager = FindObjectOfType<InGameManager>();
     }
 
     // Update is called once per frame
@@ -99,6 +100,11 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
+    public void OnPause(InputValue val)
+    {
+        inGameManager.PausePressed();
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         isJumping = false;
@@ -106,7 +112,12 @@ public class PlayerControls : MonoBehaviour
 
         if (other.gameObject.CompareTag("DeathZone"))
         {
-            SceneManager.LoadScene("MenuScene");
+            inGameManager.GameOver();
+        }
+
+        if (other.gameObject.CompareTag("Win"))
+        {
+            inGameManager.WinGame();
         }
 
         if (other.gameObject.CompareTag("Platform"))
@@ -114,6 +125,8 @@ public class PlayerControls : MonoBehaviour
             //destroy platform after a second has passed.
             Destroy(other.gameObject, disapearTime);
         }
+
+        int scoreAdd;
 
         if (other.gameObject.CompareTag("safezone"))
         {
@@ -123,5 +136,34 @@ public class PlayerControls : MonoBehaviour
         {
             isInSafeZone = false;
         }
+        
+        if (other.gameObject.layer == 6)
+        {
+            //Level 1
+            scoreAdd = 5;
+            inGameManager.IncrementScore(scoreAdd);
+        }
+
+        if (other.gameObject.layer == 7)
+        {
+            //Level 2
+            scoreAdd = 10;
+            inGameManager.IncrementScore(scoreAdd);
+        }
+
+        if (other.gameObject.layer == 8)
+        {
+            // SafeZone
+            scoreAdd = 25;
+            inGameManager.IncrementScore(scoreAdd);
+        }
+
+        if (other.gameObject.layer == 9)
+        {
+            // Level 3
+            scoreAdd = 15;
+            inGameManager.IncrementScore(scoreAdd);
+        }
+
     }
 }
