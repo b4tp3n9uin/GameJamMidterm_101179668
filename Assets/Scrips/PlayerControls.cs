@@ -8,7 +8,7 @@ public class PlayerControls : MonoBehaviour
     public bool isJumping;
     public bool isRunning;
     public bool isInSafeZone;
-    public float disapearTime = 1;
+    public float disapearTime = 1.3f;
 
     [Header("Movements")]
     public float walkSpeed = 5;
