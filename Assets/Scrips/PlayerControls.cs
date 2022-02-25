@@ -7,6 +7,7 @@ public class PlayerControls : MonoBehaviour
 {
     public bool isJumping;
     public bool isRunning;
+    public bool isInSafeZone;
     public float disapearTime = 1;
 
     [Header("Movements")]
@@ -24,13 +25,15 @@ public class PlayerControls : MonoBehaviour
 
     Rigidbody rb;
     Animator anim;
-    public GameObject Tim;
+    public GameObject BackCam;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+
+        BackCam.SetActive(false);
     }
 
     // Update is called once per frame
@@ -39,8 +42,6 @@ public class PlayerControls : MonoBehaviour
         if (!(MovementInput.magnitude > 0))
         {
             moveDirection = Vector3.zero;
-
-            //anim.SetFloat(moveHash, 0.0f);
         }
         else
         {
@@ -49,31 +50,34 @@ public class PlayerControls : MonoBehaviour
 
             Vector3 movementDirection = moveDirection * (currentSpeed * Time.deltaTime);
             transform.position += movementDirection;
-            
-
         }
-
-        
     }
 
     public void OnMove(InputValue val)
     {
-        MovementInput = val.Get<Vector2>();
+        if (!BackCam.active)
+        {
+            // Move only when back camera is deactivated.
+            MovementInput = val.Get<Vector2>();
 
-        anim.SetFloat(moveXHash, MovementInput.x);
-        anim.SetFloat(moveYHash, MovementInput.y);
+            anim.SetFloat(moveXHash, MovementInput.x);
+            anim.SetFloat(moveYHash, MovementInput.y);
+        }
     }
 
     public void OnJump(InputValue val)
     {
-        anim.SetBool(jumpHash, true);
         if (isJumping) return;
 
         if (isRunning) isRunning = false;
-        
-        isJumping = val.isPressed;
-        rb.AddForce((transform.up + moveDirection) * jumpForce, ForceMode.Impulse);
-        
+
+        if (!BackCam.active)
+        {
+            // Jump, only if back camera is deactivated
+            anim.SetBool(jumpHash, true);
+            isJumping = val.isPressed;
+            rb.AddForce((transform.up + moveDirection) * jumpForce, ForceMode.Impulse);
+        }
     }
 
     public void OnRun(InputValue val)
@@ -85,6 +89,15 @@ public class PlayerControls : MonoBehaviour
         anim.SetBool(runHash, isRunning);
     }
 
+    public void OnLookback(InputValue val)
+    {
+        if (isInSafeZone)
+        {
+            // look back to see how much damage you caused! lol
+            BackCam.SetActive(val.isPressed);
+        }
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         isJumping = false;
@@ -92,7 +105,17 @@ public class PlayerControls : MonoBehaviour
 
         if (other.gameObject.CompareTag("Platform"))
         {
+            //destroy platform after a second has passed.
             Destroy(other.gameObject, disapearTime);
+        }
+
+        if (other.gameObject.CompareTag("safezone"))
+        {
+            isInSafeZone = true;
+        }
+        else
+        {
+            isInSafeZone = false;
         }
     }
 }
