@@ -76,6 +76,7 @@ public class PlayerControls : MonoBehaviour
         if (!BackCam.active)
         {
             // Jump, only if back camera is deactivated
+            FindObjectOfType<AudioManager>().Play("jump");
             anim.SetBool(jumpHash, true);
             isJumping = val.isPressed;
             rb.AddForce((transform.up + moveDirection) * jumpForce, ForceMode.Impulse);
@@ -123,6 +124,7 @@ public class PlayerControls : MonoBehaviour
         if (other.gameObject.CompareTag("Platform"))
         {
             //destroy platform after a second has passed.
+            FindObjectOfType<AudioManager>().Play("platform");
             Destroy(other.gameObject, disapearTime);
         }
 
@@ -154,8 +156,7 @@ public class PlayerControls : MonoBehaviour
         if (other.gameObject.layer == 8)
         {
             // SafeZone
-            scoreAdd = 25;
-            inGameManager.IncrementScore(scoreAdd);
+            FindObjectOfType<AudioManager>().Play("safe");
         }
 
         if (other.gameObject.layer == 9)

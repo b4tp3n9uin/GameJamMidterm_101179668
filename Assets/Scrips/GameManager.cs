@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public void InstructionsPressed()
     {
         //Instructions Button
+        FindObjectOfType<AudioManager>().Play("select");
         MenuPannel.SetActive(false);
         InstructionsPannel.SetActive(true);
         CreditsPannel.SetActive(false);
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
     public void CreditsPressed()
     {
         //Credits Button
+        FindObjectOfType<AudioManager>().Play("select");
         MenuPannel.SetActive(false);
         InstructionsPannel.SetActive(false);
         CreditsPannel.SetActive(true);
@@ -50,6 +52,7 @@ public class GameManager : MonoBehaviour
     public void BackPressed()
     {
         //Back Button
+        FindObjectOfType<AudioManager>().Play("select");
         MenuPannel.SetActive(true);
         InstructionsPannel.SetActive(false);
         CreditsPannel.SetActive(false);

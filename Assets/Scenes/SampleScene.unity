@@ -778,6 +778,7 @@ MonoBehaviour:
   PausePannel: {fileID: 246432642}
   WinPannel: {fileID: 243593545}
   LosePannel: {fileID: 2072782396}
+  gameMusic: {fileID: 963194229}
   ScoreTxt: {fileID: 1071760172}
 --- !u!4 &96562714
 Transform:
@@ -1063,7 +1064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.93934953, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.20935965, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2530,7 +2531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &243593546
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2607,7 +2608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &246432643
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9191,7 +9192,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0bad1c2dbccb85a4ab35e217868b680e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.035
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -10657,6 +10658,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1247578207}
   m_CullTransparentMesh: 1
+--- !u!1 &1265366586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1265366588}
+  - component: {fileID: 1265366587}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1265366587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265366586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9120937e9ea494bb72422d39fcd26e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: select
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: lose
+    clip: {fileID: 8300000, guid: cdf73c2833dca1241acd56dbb9717d40, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: win
+    clip: {fileID: 8300000, guid: 64aef3e485f0cc44e81ba64618d2c353, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: safe
+    clip: {fileID: 8300000, guid: 1b74876a31f9b7a48b1916f12f2c1d8e, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: platform
+    clip: {fileID: 8300000, guid: 1eb818a36a4a8dd49821dc4955a6bdc3, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: jump
+    clip: {fileID: 8300000, guid: a71361f576ff8504189cfa87968511da, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+--- !u!4 &1265366588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265366586}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -231.1442, y: -244.0524, z: 442.59088}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1281909633
 GameObject:
   m_ObjectHideFlags: 0

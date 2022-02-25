@@ -11,6 +11,7 @@ public class InGameManager : MonoBehaviour
     public GameObject WinPannel;
     public GameObject LosePannel;
 
+    public AudioSource gameMusic;
     public Text ScoreTxt;
     int playerScore = 0;
 
@@ -28,13 +29,19 @@ public class InGameManager : MonoBehaviour
 
     public void PausePressed()
     {
+        FindObjectOfType<AudioManager>().Play("select");
+
         if (Time.timeScale != 0)
         {
+            //Pause
+            gameMusic.Pause();
             Time.timeScale = 0;
             PausePannel.SetActive(true);
         }
         else
         {
+            //Resume
+            gameMusic.Play();
             Time.timeScale = 1;
             PausePannel.SetActive(false);
         }
@@ -52,12 +59,20 @@ public class InGameManager : MonoBehaviour
 
     public void WinGame()
     {
+        FindObjectOfType<AudioManager>().Play("win");
+
+        // Win
+        gameMusic.Pause();
         Time.timeScale = 0;
         WinPannel.SetActive(true);
     }
 
     public void GameOver()
     {
+        FindObjectOfType<AudioManager>().Play("lose");
+
+        // Lose
+        gameMusic.Pause();
         Time.timeScale = 0;
         LosePannel.SetActive(true);
     }
