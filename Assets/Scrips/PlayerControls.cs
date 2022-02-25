@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -102,6 +103,11 @@ public class PlayerControls : MonoBehaviour
     {
         isJumping = false;
         anim.SetBool(jumpHash, false);
+
+        if (other.gameObject.CompareTag("DeathZone"))
+        {
+            SceneManager.LoadScene("MenuScene");
+        }
 
         if (other.gameObject.CompareTag("Platform"))
         {

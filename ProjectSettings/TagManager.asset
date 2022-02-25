@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Platform
   - safezone
+  - DeathZone
   layers:
   - Default
   - TransparentFX
