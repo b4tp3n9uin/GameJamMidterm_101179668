@@ -788,6 +788,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115299468}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &124685924 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5450526443423814944, guid: 49bdb111901dac44c9272b508b531936, type: 3}
+  m_PrefabInstance: {fileID: 488336654}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &135530125
 GameObject:
   m_ObjectHideFlags: 0
@@ -1850,13 +1855,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53dde77080b84549b8f5e5e601b533c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMoving: 0
   isJumping: 0
   isRunning: 0
   disapearTime: 1
   walkSpeed: 5
   runSpeed: 10
   jumpForce: 5
+  Tim: {fileID: 124685924}
 --- !u!4 &192154296 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 49bdb111901dac44c9272b508b531936, type: 3}
@@ -7767,7 +7772,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.2588191, y: -0, z: -0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: 3.33, z: -3.02}
+  m_LocalPosition: {x: 0, y: 3.33, z: -3.0200005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 192154296}

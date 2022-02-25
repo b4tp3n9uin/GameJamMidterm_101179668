@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
 {
-    public bool isMoving;
     public bool isJumping;
     public bool isRunning;
     public float disapearTime = 1;
@@ -18,11 +17,14 @@ public class PlayerControls : MonoBehaviour
     Vector2 MovementInput = Vector2.zero;
     Vector3 moveDirection = Vector3.zero;
 
-    public readonly int moveHash = Animator.StringToHash("Movement");
+    public readonly int moveXHash = Animator.StringToHash("MovementX");
+    public readonly int moveYHash = Animator.StringToHash("MovementY");
     public readonly int jumpHash = Animator.StringToHash("IsJumping");
+    public readonly int runHash = Animator.StringToHash("IsRunning");
 
     Rigidbody rb;
     Animator anim;
+    public GameObject Tim;
 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +38,9 @@ public class PlayerControls : MonoBehaviour
     {
         if (!(MovementInput.magnitude > 0))
         {
-            isMoving = false;
             moveDirection = Vector3.zero;
 
-            anim.SetFloat(moveHash, 0.0f);
+            //anim.SetFloat(moveHash, 0.0f);
         }
         else
         {
@@ -47,25 +48,20 @@ public class PlayerControls : MonoBehaviour
             float currentSpeed = isRunning ? runSpeed : walkSpeed;
 
             Vector3 movementDirection = moveDirection * (currentSpeed * Time.deltaTime);
-
             transform.position += movementDirection;
+            
 
-            float moveAnim = currentSpeed / runSpeed;
-            anim.SetFloat(moveHash, moveAnim);
         }
-        
-        
-        
 
-        //transform.rotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-
+        
     }
 
     public void OnMove(InputValue val)
     {
         MovementInput = val.Get<Vector2>();
 
-        isMoving = true;
+        anim.SetFloat(moveXHash, MovementInput.x);
+        anim.SetFloat(moveYHash, MovementInput.y);
     }
 
     public void OnJump(InputValue val)
@@ -86,6 +82,7 @@ public class PlayerControls : MonoBehaviour
         {
             isRunning = val.isPressed;
         }
+        anim.SetBool(runHash, isRunning);
     }
 
     private void OnCollisionEnter(Collision other)
